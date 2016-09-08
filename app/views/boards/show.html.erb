@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p><br>
+
+<% Category.all.each do |category| %>
+<%= link_to category.name, board_posts_path(category: category.name) %>
+<% end %>
+
+
+<% @posts.each do |p|  %>
+	
+
+	<div class="col-md-4">
+	<div class="postshow">
+		
+
+	<h2 class="title"><%= p.title  %></h2> 
+	<p class="cat"><%= p.date  %></p> 
+	<p class="cat"> <%= p.category.try(:name)  %> </p>
+	<h3 class="body"> <%= p.content  %> </h3>
+	<%= link_to 'show', board_post_path(@board.id, p.id)%>
+
+
+	</div>
+	</div>
+
+
+	
+<% end  %>
+
+
