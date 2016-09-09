@@ -82,6 +82,8 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: pinboard_production
-  username: pinboard
+  username: ubuntu
   password: <%= ENV['PINBOARD_DATABASE_PASSWORD'] %>
