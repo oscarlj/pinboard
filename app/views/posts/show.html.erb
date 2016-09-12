@@ -1,37 +1,64 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  
+    <div class="col-md-4">
+      <div class="postshow">
+        <p>
+          <strong>Title:</strong>
+          <%= @post.title %>
+        </p>
 
-<div class="col-md-4">
-  <div class="postshow">
-    <p>
-      <strong>Title:</strong>
-      <%= @post.title %>
-    </p>
+        <p>
+          <strong>Content:</strong>
+          <%= @post.content %>
+        </p>
 
-    <p>
-      <strong>Content:</strong>
-      <%= @post.content %>
-    </p>
+        <p>
+          <strong>Date:</strong>
+          <%= @post.date %>
+        </p>
 
-    <p>
-      <strong>Date:</strong>
-      <%= @post.date %>
-    </p>
+        <p>
+          <strong>Category:</strong>
+          <%= @post.category.name %>
+        </p>
 
-    <p>
-      <strong>Category:</strong>
-      <%= @post.category.name %>
-    </p>
+        <p>
+          <strong>Board:</strong>
+          <%= @post.board.names %>
+        </p>
 
-    <p>
-      <strong>Board:</strong>
-      <%= @post.board.names %>
-    </p>
 
-    <p>
-      <strong>User:</strong>
-      <%= @post.user.email %>
-    </p>
-  </div>
+
+        <p>
+          <strong>User:</strong>
+          <%= @post.user.email %>
+        </p>
+    <%=form_for [@post.board, @post, @post.comments.build] do |f| %>
+      <%= f.text_area :content %>
+      <%= f.button :submit %>
+        <p>
+
+      </div>
+    </div>
+
+
 </div>
+      
+      <% @post.comments.all.each do |c| %>
+    <div row>
+        <div class="comments col-md-4" >      
+         <p>
+          <%= c.user.try(:email) %>
+          <%= c.content %>
+         </p>
+        </div>
+    </div> 
+      <% end %>
+    </p>
+<% end %>
 
-<%= link_to 'Back', board_path(@post.board.id) %>
+
+ <%= link_to 'Back', board_path(@post.board.id) %>
+  
+

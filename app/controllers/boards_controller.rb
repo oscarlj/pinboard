@@ -11,10 +11,25 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @category = Category.all
-    @board = Board.find(params[:id])
-    @posts = @board.posts
+    if params[:categoria].present?
 
+      @categoria = params[:categoria].to_i
+      if params[:categoria].to_i==0
+     @posts = @board.posts 
+      else
+      @posts = @board.posts.where(category_id: params[:categoria].to_i)
+      end
+       
+     else
+       @posts = @board.posts 
+     end
+
+    @category = Category.all
+
+    @categoria_arreglo = Category.all.map{|c| [c.name,c.id]}
+    @categoria_arreglo.push(["Todos",0])
+    @board = Board.find(params[:id])
+   
   end
 
   # GET /boards/new
@@ -25,6 +40,16 @@ class BoardsController < ApplicationController
   def categories
     
 
+
+  end
+
+  def get_address
+ @address = Geocoder.address([params[:latitude], params[:longitude]])
+ render json: @address
+ end
+
+
+  def map
 
   end
 

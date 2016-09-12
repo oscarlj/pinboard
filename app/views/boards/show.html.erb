@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p><br>
 
-<% Category.all.each do |category| %>
-<%= link_to category.name, board_posts_path(category: category.name) %>
+<div class="catselect">
+	
+<%= form_tag("",method: "get")  do | f | %>
+
+<%= select_tag :categoria, options_for_select(@categoria_arreglo), class:'form-control' %>
+<%= submit_tag "filter", class: 'btn btn-default' %>
 <% end %>
 
+</div>
 
 <% @posts.each do |p|  %>
 	

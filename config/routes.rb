@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+
+  get 'boards/map'
+
+   
   
   
+
       devise_for :users, controllers: {
         sessions: 'users/sessions', 
         registrations: 'users/registrations'
@@ -13,7 +18,9 @@ Rails.application.routes.draw do
 
 
   resources :boards do
-    resources :posts
+    resources :posts do
+      resources :comments
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

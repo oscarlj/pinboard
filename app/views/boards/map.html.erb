@@ -1,0 +1,25 @@
+<div id="demo"> </div>
+<button onclick="getLocation()">Try It</button>
+
+<a href="#" id="address-link"> buscar dirección </a>
+
+
+
+<script>
+var x = document.getElementById("demo");
+function getLocation() {
+ if (navigator.geolocation) {
+ navigator.geolocation.getCurrentPosition(showPosition);
+ } else {
+ x.innerHTML = "Geolocation is not supported by this browser.";
+ }
+}
+function showPosition(position) {
+ x.innerHTML = "Latitude: " + position.coords.latitude +
+ "<br>Longitude: " + position.coords.longitude;
+}
+
+
+$("#address-link").attr("href", "/pages/get_address?latitude=" + latitude +
+"&longitude=" + longitude);
+</script>
