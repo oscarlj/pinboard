@@ -51,8 +51,31 @@ class BoardsController < ApplicationController
 
   def map
 
+    
+
   end
 
+
+
+  def guardar_map
+
+    if params[:param1].present?
+
+      current_user.latitude = params[:param1]
+
+      current_user.longitude = params[:param2]
+      current_user.save
+
+    end
+
+    respond_to do |format|
+
+      format.js
+    end
+
+
+
+  end
 
   # GET /boards/1/edit
   def edit

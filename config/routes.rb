@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   get 'boards/map'
 
-   
+  get 'boards/guardar_map'
+
+
   
   
 

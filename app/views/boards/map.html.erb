@@ -1,12 +1,12 @@
-<div id="demo"> </div>
+<div id="map"> </div>
 <button onclick="getLocation()">Try It</button>
 
-<a href="#" id="address-link"> buscar dirección </a>
+
 
 
 
 <script>
-var x = document.getElementById("demo");
+var x = document.getElementById("map");
 function getLocation() {
  if (navigator.geolocation) {
  navigator.geolocation.getCurrentPosition(showPosition);
@@ -17,9 +17,19 @@ function getLocation() {
 function showPosition(position) {
  x.innerHTML = "Latitude: " + position.coords.latitude +
  "<br>Longitude: " + position.coords.longitude;
+ var latitude = position.coords.latitude
+ var longitude = position.coords.longitude
+
+
+  $.ajax({
+  url: '<%= boards_guardar_map_path %>',
+  type: 'GET',
+  dataType: 'script',
+  data: {param1: latitude, param2: longitude},
+  })
+
 }
 
 
-$("#address-link").attr("href", "/pages/get_address?latitude=" + latitude +
-"&longitude=" + longitude);
+
 </script>
