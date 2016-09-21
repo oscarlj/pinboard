@@ -30,7 +30,7 @@ gem 'underscore-rails'
 
 gem 'faker'
 
-gem 'ruby', '2.2.4'
+gem 'activeadmin', github: 'activeadmin'
 
 
 gem 'rails_12factor', group: :production
