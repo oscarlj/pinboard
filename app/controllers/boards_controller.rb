@@ -5,7 +5,17 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
+
     @boards = Board.all
+
+    
+      if params[:countr].present?      
+        @boards = @boards.joins(:city).where("cities.country_id": params[:countr].to_i)
+      end
+       
+     
+     @country_arreglo = Country.all.map{|c| [c.name,c.id]}
+
   end
 
   # GET /boards/1
@@ -50,7 +60,12 @@ class BoardsController < ApplicationController
 
 
   def map
-
+    @users = User.all
+    @markers = Gmaps4rails.build_markers(@users) do |
+    user, marker|
+     marker.lat user.latitude
+     marker.lng user.longitude
+    end
     
 
   end

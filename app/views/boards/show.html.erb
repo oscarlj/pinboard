@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p><br>
 
 <div class="catselect">
+<%= link_to 'New Post', new_board_post_path(@board.id) %>
 	
 <%= form_tag("",method: "get")  do | f | %>
 

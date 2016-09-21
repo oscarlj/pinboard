@@ -1,11 +1,25 @@
-<div id="map"> </div>
-<button onclick="getLocation()">Try It</button>
+<style>
+#map {height: 400px;
+}
+
+ </style>
+
+<div id="map"></div>
+    <script>var handler = Gmaps.build('Google');
+handler.buildMap({
+    internal: {id: "map"},
+    provider: {
+        backgroundColor: "black",
+        center: new google.maps.LatLng(-33, -70.6)
+    }}, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+    });
+      
+    </script>
 
 
 
-
-
-<script>
+<!--<script>
 var x = document.getElementById("map");
 function getLocation() {
  if (navigator.geolocation) {
@@ -29,7 +43,6 @@ function showPosition(position) {
   })
 
 }
+-->
 
 
-
-</script>
